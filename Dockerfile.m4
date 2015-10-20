@@ -9,7 +9,8 @@ USER __USER__
 
 COPY *.crt __INSTALL__/
 
-RUN apt-get update && \
+RUN echo "deb http://http.debian.net/debian wheezy-backports main" > /etc/apt/sources.list.d/backports.list && \
+    apt-get update && \
     apt-get dist-upgrade --assume-yes && \
     apt-get install --assume-yes --no-install-recommends ca-certificates && \
     apt-get clean autoclean && \
